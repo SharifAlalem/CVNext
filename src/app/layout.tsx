@@ -1,7 +1,8 @@
 import '../styles/global.scss';
 import Header from '@/components/layout/Header/header';
 import Footer from '@/components/layout/Footer/footer';
-import { StepsWrapper } from '../context/steps';
+import { StepsWrapper } from '../context/stepsProgress';
+import { ComponentsWrapper } from '../context/stepsComponents';
 import FloatingIcons from '@/components/FloatingIcons/floatingIcons';
 
 export const metadata = {
@@ -20,7 +21,9 @@ export default function RootLayout({
         <FloatingIcons />
         <Header/>
           <StepsWrapper>
-            {children}
+            <ComponentsWrapper>
+              {children}
+            </ComponentsWrapper>
           </StepsWrapper>
         <Footer/>
       </body>

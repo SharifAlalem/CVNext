@@ -1,0 +1,46 @@
+#baseCard {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #prev {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 18%;
+    height: 70%;
+    left: -55px;
+  
+    @media (max-width: $breakpoint-mobile) {
+      height: 20%;
+      left: -40px;
+      z-index: 0;
+    }
+  }
+  
+  #next {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 18%;
+    height: 70%;
+    right: -55px;
+  
+    @media (max-width: $breakpoint-mobile) {
+      height: 20%;
+      right: -40px;
+      z-index: 0;
+    }
+  }
+  .actions {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+  }
+  
+  .actionsCenter {
+    justify-content: center;
+  }
