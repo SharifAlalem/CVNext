@@ -21,6 +21,7 @@ const BaseForm = ({ children, data }: { children: any, data: any }) => {
                 formId={id}
                 key={index}
                 value={input[input.inputName]}
+                inputName={input.inputName}
               ></BaseInput>
             )
 
