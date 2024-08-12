@@ -19,7 +19,7 @@ const Home = () => {
             <ProgressBar steps={steps} setSteps={setSteps} />
             <FormBuildDataWrapper>
                 <BaseCard currentIndex={currentIndex} components={components} setComponents={setComponents}>
-                    <h1>{components[currentIndex].component}</h1>
+                    {components[currentIndex].component}
                 </BaseCard>
             </FormBuildDataWrapper>
         </main>

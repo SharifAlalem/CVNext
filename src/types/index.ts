@@ -28,23 +28,15 @@ export type FloatingIcons = {
 
 export type FormData = {
   inputName: string;
-  fname?: string;
-  lname?: string
   type: string;
   placeholder: string;
   width: string;
-  phone?:string;
-  email?:string;
-  streetAndNum?: string;
-  city?: string;
-  country?: string;
-  dateOfBirth?: string;
-  profession?: string;
-  summary?: string;
   label?: string;
 };
 
 export type FormBuildDataContextType = {
-  data: FormData[];
-  setData: Function;
+  formFields: FormData[];
+  setFormFields: Function;
+  formData: Record<string, string>;
+  setFormData: Function;
 };

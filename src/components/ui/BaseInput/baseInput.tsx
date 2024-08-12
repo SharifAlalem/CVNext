@@ -1,18 +1,10 @@
-import { useFormBuildData } from '@/context/formBuildData';
+"use client"
+import {ChangeEventHandler} from 'react';
 import styles from './baseInput.module.scss';
-import { FormData } from '@/types';
 
-const BaseInput = ({inputName,showLabel,placeholder,label,type,classType,formId,value}:{inputName:any,showLabel?:boolean,placeholder?:string,label:string,type:string,classType?:string,formId?:number,value:string}) => {
+
+const BaseInput = ({name,value,showLabel,placeholder,label,type,classType,formId,update}:{name:string,value:any,showLabel?:boolean,placeholder?:string,label:string,type:string,classType?:string,formId?:number,update:ChangeEventHandler<HTMLInputElement|HTMLTextAreaElement>}) => {
   let checkedPresent = true;  
-  const {data,setData} = useFormBuildData();
-
-  const updateValue = (value:string) => {
-    let newData = [...data]
-    let foundInputIndex = data.findIndex((input)=>input.inputName === inputName);
-    newData[foundInputIndex][inputName as keyof FormData] = value;
-    setData(newData);
-  }
-
   return ( 
         <div className={`${styles.formGroup} ${type !== 'image' ? styles[`${classType}`] : 'block'}`}>
         {
@@ -35,11 +27,12 @@ const BaseInput = ({inputName,showLabel,placeholder,label,type,classType,formId,
         {
           type !== 'textarea' && (
           <input
+            name={name}
             className={`${styles.full} ${styles.input}`}
             type={type}
             placeholder={placeholder}
-            value={value}
-            onChange={e => updateValue(e.target.value)}
+            value={value}  
+            onChange={e => update(e)}
           />
           )
         }
@@ -47,12 +40,12 @@ const BaseInput = ({inputName,showLabel,placeholder,label,type,classType,formId,
         {
           type === 'textarea' && (
             <textarea
+              name={name}
               className={`${styles.full} ${styles.textarea}`}
               placeholder={placeholder}
               value={value}
-              onChange={e => updateValue(e.target.value)}
+              onChange={e => update(e)}
               >
-            
               </textarea>
           )
         }
@@ -60,7 +53,7 @@ const BaseInput = ({inputName,showLabel,placeholder,label,type,classType,formId,
         {
           label === 'End date' && (
           <div className="checkbox">
-            <input className={`${styles.full} ${styles.input}`} value={value}  onChange={e => updateValue(e.target.value)}/>
+            <input  value={value} name={name} className={`${styles.full} ${styles.input}`}  onChange={e => update(e)}/>
             <label className={styles.label}> Present</label>
           </div>
           )
