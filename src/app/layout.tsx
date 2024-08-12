@@ -1,8 +1,8 @@
 import '../styles/global.scss';
 import Header from '@/components/layout/Header/header';
 import Footer from '@/components/layout/Footer/footer';
-import { StepsWrapper } from '../context/stepsProgress';
 import { ComponentsWrapper } from '../context/stepsComponents';
+import { FormBuildDataWrapper } from "@/context/formBuildData";
 import FloatingIcons from '@/components/FloatingIcons/floatingIcons';
 
 export const metadata = {
@@ -20,11 +20,11 @@ export default function RootLayout({
       <body>
         <FloatingIcons />
         <Header/>
-          <StepsWrapper>
             <ComponentsWrapper>
-              {children}
+              <FormBuildDataWrapper>
+                {children}
+              </FormBuildDataWrapper>
             </ComponentsWrapper>
-          </StepsWrapper>
         <Footer/>
       </body>
     </html>
