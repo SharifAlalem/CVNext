@@ -1,0 +1,98 @@
+@import "../../../styles/mixins";
+.formGroup {
+  margin: 10px 2%;
+}
+
+.label {
+  float: left;
+  font-size: 13px;
+  padding-left: 8px;
+  line-height: 10px;
+  text-transform: uppercase;
+}
+
+.input,
+.textarea {
+  padding: 10px 5px;
+  border: 2px solid lightgrey;
+  color: #333;
+  background-color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: none;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &.danger {
+    border-color: $red;
+  }
+
+  &.success {
+    border-color: $green;
+  }
+
+  &.info {
+    border-color: $blue;
+  }
+
+  &::placeholder {
+    text-transform: uppercase;
+  }
+
+  &:focus {
+    border: 2px solid $blue;
+    outline: none;
+    @include shadow_color(rgb(80, 191, 255, 0.2));
+  }
+}
+
+.small {
+  width: 29.3%;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 100%;
+  }
+}
+
+.medium {
+  width: 44%;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 95%;
+  }
+}
+
+.full {
+  width: 95%;
+}
+
+.block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+
+  .label {
+    font-weight: bold;
+  }
+
+  .input {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+}

@@ -17,19 +17,19 @@ const BaseCard = ({currentIndex,components,setComponents,children}:{currentIndex
     }
     
     return ( 
-        <section id="baseCard">
+        <section id={styles.baseCard}>
             {children}
             <div className={styles.actions + ' ' + (currentIndex === 0 || currentIndex === 5 ? styles.actionsCenter : '')}>
                 {
                 currentIndex !== 0 && (
-                    <button id="prev" onClick={prev} aria-label="next">
+                    <button id={styles.prev} onClick={prev} aria-label="next">
                         <FaChevronLeft/>
                     </button>
                 )
                 }
                 {
                 currentIndex !== 5 && (
-                    <button id="next" onClick={next} aria-label="back">
+                    <button id={styles.next} onClick={next} aria-label="back">
                         <FaChevronRight/>
                     </button>
                 )
