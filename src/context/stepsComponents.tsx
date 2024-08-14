@@ -1,20 +1,20 @@
 "use client"
 import { createContext, useContext, useState } from "react";
 import { ComponentsContext } from "../types";
-import PersonalInfos from "@/components/PersonalInfos/personalInfos";
+import { FaUser, FaGraduationCap, FaBriefcase, FaProjectDiagram, FaMedal, FaFileSignature } from "react-icons/fa";
 
-const componentsContext = createContext<ComponentsContext>({ components: [], setComponents: () => { } });
+const componentsContext = createContext<ComponentsContext>({ steps: [], setSteps: () => { } });
 
 export const ComponentsWrapper = ({ children }: { children: React.ReactNode; }) => {
-  const [components, setComponents] = useState([
-    { id:1, component: <PersonalInfos/> , active:true },
-    { id:2, component: '' , active:false },
-    { id:3, component: '' , active:false },
-    { id:4, component: '' , active:false },
-    { id:5, component: '' , active:false },
-    { id:6, component: '' , active:false },
+  const [steps, setSteps] = useState([
+    { id:1,icon: <FaUser />, dataType: 'personal' , active:true },
+    { id:2,icon: <FaGraduationCap />, dataType: 'education' , active:false },
+    { id:3,icon: <FaBriefcase />, dataType: 'work' , active:false },
+    { id:4,icon: <FaProjectDiagram />, dataType: 'project' , active:false },
+    { id:5,icon: <FaMedal />, dataType: 'skill' , active:false },
+    { id:6,icon: <FaFileSignature />, dataType: 'template' , active:false },
   ]);
-  const value = { components, setComponents };
+  const value = { steps, setSteps };
   return (
     <componentsContext.Provider value={value}>
       {children}

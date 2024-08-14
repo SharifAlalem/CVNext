@@ -2,24 +2,14 @@ import { ReactElement } from "react";
 
 export type ArrayOfSteps = {
   id: number;
-  icon: ReactElement;
-  active: boolean;
-};
-
-export type StepsContext = {
-  steps: ArrayOfSteps[];
-  setSteps: Function;
-};
-
-export type ArrayOfComponents = {
-  id: number;
-  component: ReactElement | string;
+  icon:  ReactElement | string;
+  dataType: string;
   active: boolean;
 };
 
 export type ComponentsContext = {
-  components: ArrayOfComponents[];
-  setComponents: Function;
+  steps: ArrayOfSteps[];
+  setSteps: Function;
 };
 
 export type FloatingIcons = {
@@ -27,16 +17,29 @@ export type FloatingIcons = {
 };
 
 export type FormData = {
-  inputName: string;
-  type: string;
-  placeholder: string;
-  width: string;
+  inputName?: string;
+  type?: string;
+  placeholder?: string;
+  width?: string;
   label?: string;
+  templateId?:number;
+  imageUrl?:string;
+  selected?:boolean;
 };
 
-export type FormBuildDataContextType = {
-  formFields: FormData[];
-  setFormFields: Function;
+export type FormsBuildDataContextType = {
+  personalFormFields: FormData[];
+  setPersonalFormFields: Function;
+  educationFormFields: FormData[];
+  setEducationFormFields: Function;
+  workFormFields: FormData[];
+  setWorkFormFields: Function;
+  projectFormFields: FormData[];
+  setProjectFormFields: Function;
+  skillFormFields: FormData[];
+  setSkillFormFields: Function;
+  templateFormFields: FormData[];
+  setTemplateFormFields: Function;
   formData: Record<string, string>;
   setFormData: Function;
 };
