@@ -6,6 +6,11 @@
     padding: 10px;
     position: relative;
     z-index: 1;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   #prev {

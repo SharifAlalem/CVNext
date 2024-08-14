@@ -1,25 +1,14 @@
+"use client"
 import styles from './baseForm.module.scss';
 import BaseInput from '../BaseInput/baseInput';
+import { memo } from 'react';
+import { FormInputsDataWrapper } from '@/context/formInputsData';
 
-const BaseForm = ({ children,formFields,formData,setFormData}: { children: any, formFields: any,formData:any,setFormData:any }) => {
+const BaseForm = ({ children,formFields}: { children: any, formFields: any }) => {
   let id = 1;
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,name:string) => {
-    const value = e.target.value;
-    setFormData((prevData:any) => {
-      if (prevData[name] !== value) {
-        return {
-          ...prevData,
-          [name]: value,
-        };
-      }
-      return prevData;
-    });
-  };
-
-
   return (
-    <div>
+    <>
+    <FormInputsDataWrapper>
       {children}
       <div className={styles.form}>
         {/* <BaseUploadImage v-if="withImageUpload" className="block" /> */}
@@ -35,18 +24,17 @@ const BaseForm = ({ children,formFields,formData,setFormData}: { children: any, 
                 classType={input.width}
                 formId={id}
                 key={index}
-                value={formData[input.inputName] || ''}
-                update={(e)=>handleChange(e,input.inputName)}
+                value={input.inputName || ''}
               >
               </BaseInput>
             )
 
           })
         }
-
       </div>
-    </div >
+      </FormInputsDataWrapper>
+    </>
   );
 }
 
-export default BaseForm;
+export default memo(BaseForm);

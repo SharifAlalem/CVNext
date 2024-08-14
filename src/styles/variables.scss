@@ -1,5 +1,8 @@
 //fonts
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@100..900&display=swap');
+@font-face {
+    font-family: 'Anton';
+    src:  url('./Outfit-Variable-subset.woff2') format('woff2'),
+}
 
 //breackpoints
 $breakpoint-desktop: 1399px;
