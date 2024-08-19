@@ -4,7 +4,6 @@ import { useComponentsState } from "@/context/stepsComponents";
 import ProgressBar from "@/components/Progress/progress";
 import BaseCard from "@/components/ui/BaseCard/baseCard";
 import { useEffect, useState } from "react";
-import { FormBuildDataWrapper } from "@/context/formBuildData";
 import { useFormBuildData } from "@/context/formBuildData";
 import { FormData } from "@/types";
 import BaseForm from "@/components/ui/BaseForm/baseForm";
@@ -48,7 +47,6 @@ const Home = () => {
   return (
     <main className={styles.main}>
       <ProgressBar steps={steps} setSteps={setSteps} />
-      <FormBuildDataWrapper>
         <BaseCard
           currentIndex={currentIndex}
           components={steps}
@@ -58,7 +56,6 @@ const Home = () => {
                 <h1>{steps.length !== 0 && steps[currentIndex].dataType}</h1>
             </BaseForm>
         </BaseCard>
-      </FormBuildDataWrapper>
     </main>
   );
 };

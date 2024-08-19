@@ -1,5 +1,4 @@
 "use client"
-import { ChangeEventHandler } from 'react';
 import styles from './baseInput.module.scss';
 import { memo } from 'react';
 import { useStore } from '@/customHooks/useStore';
@@ -49,7 +48,7 @@ const BaseInput = ({ name, value, showLabel, placeholder, label, type, classType
       {
         label === 'End date' && (
           <div className="checkbox">
-            <input value={fieldValue} name={name} className={`${styles.full} ${styles.input}`} onChange={e => setStore({[value]: e.target.value})} />
+            <input value={fieldValue || ''} name={name} className={`${styles.full} ${styles.input}`} onChange={e => setStore({[value]: e.target.value})} />
             <label className={styles.label}> Present</label>
           </div>
         )
