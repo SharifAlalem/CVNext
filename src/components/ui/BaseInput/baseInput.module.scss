@@ -9,42 +9,43 @@
   padding-left: 8px;
   line-height: 10px;
   text-transform: uppercase;
-}
+  width: 100%;
+  
+  .input,
+  .textarea {
+    padding: 10px 5px;
+    border: 2px solid lightgrey;
+    color: #333;
+    background-color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
 
-.input,
-.textarea {
-  padding: 10px 5px;
-  border: 2px solid lightgrey;
-  color: #333;
-  background-color: #fff;
-  border-radius: 4px;
-  font-size: 14px;
-  resize: none;
+    &[disabled] {
+      cursor: not-allowed;
+    }
 
-  &[disabled] {
-    cursor: not-allowed;
-  }
+    &.danger {
+      border-color: $red;
+    }
 
-  &.danger {
-    border-color: $red;
-  }
+    &.success {
+      border-color: $green;
+    }
 
-  &.success {
-    border-color: $green;
-  }
+    &.info {
+      border-color: $blue;
+    }
 
-  &.info {
-    border-color: $blue;
-  }
+    &::placeholder {
+      text-transform: uppercase;
+    }
 
-  &::placeholder {
-    text-transform: uppercase;
-  }
-
-  &:focus {
-    border: 2px solid $blue;
-    outline: none;
-    @include shadow_color(rgb(80, 191, 255, 0.2));
+    &:focus {
+      border: 2px solid $blue;
+      outline: none;
+      @include shadow_color(rgb(80, 191, 255, 0.2));
+    }
   }
 }
 

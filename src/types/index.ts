@@ -40,6 +40,10 @@ export type FormsBuildDataContextType = {
   setSkillFormFields: Function;
   templateFormFields: FormData[];
   setTemplateFormFields: Function;
-  formData: Record<string, string>;
-  setFormData: Function;
+};
+
+export type FormsInputsDataContextType = {
+  getData: any;
+  setData: any;
+  subscribeData: any;
 };

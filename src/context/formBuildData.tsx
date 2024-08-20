@@ -15,9 +15,7 @@ const FormBuildDataContext = createContext<FormsBuildDataContextType>({
   skillFormFields: [],
   setSkillFormFields: () => {},
   templateFormFields: [],
-  setTemplateFormFields: () => {},
-  formData: {},
-  setFormData: () => {},
+  setTemplateFormFields: () => {}
 });
 
 export const FormBuildDataWrapper = ({
@@ -210,8 +208,6 @@ export const FormBuildDataWrapper = ({
     },
   ]);
 
-  const [formData, setFormData] = useState<Record<string, string>>({});
-
   const value = {
     personalFormFields,
     setPersonalFormFields,
@@ -225,8 +221,6 @@ export const FormBuildDataWrapper = ({
     setSkillFormFields,
     templateFormFields,
     setTemplateFormFields,
-    formData,
-    setFormData,
   };
   return (
     <FormBuildDataContext.Provider value={value}>
