@@ -10,6 +10,7 @@ export type ArrayOfSteps = {
 export type ComponentsContext = {
   steps: ArrayOfSteps[];
   setSteps: Function;
+  getCurrentActiveIndex: Function;
 };
 
 export type FloatingIcons = {
