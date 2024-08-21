@@ -48,3 +48,9 @@ export type FormsInputsDataContextType = {
   setData: any;
   subscribeData: any;
 };
+
+
+export type ProgressProps = {
+  stepsProps?: ArrayOfSteps[],
+  setStepsProps?: Function
+}

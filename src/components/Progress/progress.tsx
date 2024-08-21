@@ -1,29 +1,30 @@
 "use client"
 import { useComponentsState } from '@/context/stepsComponents';
 import styles from './progress.module.scss';
-import { ArrayOfSteps } from '@/types';
+import { ProgressProps } from '@/types';
 
-const ProgressBar = ({stepsProps,setStepsProps}:{stepsProps?:ArrayOfSteps[],setStepsProps?:Function}) => {
+const ProgressBar = ( props: ProgressProps ) => {
     const { steps, setSteps } = useComponentsState();
+    const { stepsProps = steps, setStepsProps = setSteps } = props;
 
-    const setActive = (index:number) => {
-        const newSteps = [...steps];
-        newSteps.map(step=>step.active = false);
+    const setActive = (index: number) => {
+        const newSteps = [...stepsProps];
+        newSteps.map(step => step.active = false);
         newSteps[index].active = true;
-        setSteps(newSteps);
+        setStepsProps(newSteps);
     }
 
-    return ( 
+    return (
         <div id={styles.progressBar}>
             <ul id={styles.progressList}>
-                {steps.length !== 0 && steps.map((step:any,index:number)=>{
+                {stepsProps.length !== 0 && stepsProps.map((step: any, index: number) => {
                     return <li onClick={() => setActive(index)} className={styles.step + ' ' + (step.active === true ? styles.active : ' ')} key={step.id}>
-                    <span> {step.icon} </span>
-                </li>
+                        <span> {step.icon} </span>
+                    </li>
                 })}
             </ul>
         </div>
-     );
+    );
 }
- 
+
 export default ProgressBar;
