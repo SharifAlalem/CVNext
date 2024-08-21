@@ -5,8 +5,9 @@ import { memo, useEffect, useState } from 'react';
 import { FormInputsDataWrapper } from '@/context/formInputsData';
 import { useComponentsState } from '@/context/stepsComponents';
 import { useFormBuildData } from '@/context/formBuildData';
+import { BaseFormProps } from '@/types';
 
-const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps?: any }) => {
+const BaseForm = (props: BaseFormProps) => {
   let id = 1;
   const { steps, currentActiveIndex } = useComponentsState();
   const {
@@ -17,11 +18,15 @@ const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps
     skillFormFields,
     templateFormFields,
   } = useFormBuildData();
-  const [data, setTheData] = useState<any>(personalFormFields);
+
+  const { currentIndexProps = currentActiveIndex, stepsProps = steps, buildDataProps = personalFormFields } = props;
+
+  const [data,setTheData] = useState<any>(buildDataProps);
+
   useEffect(() => {
-    switch (steps[currentActiveIndex].dataType) {
+    switch (stepsProps?.[currentIndexProps as number].dataType) {
       case 'personal':
-        setTheData(personalFormFields);
+        setTheData(buildDataProps);
         break;
       case 'work':
         setTheData(workFormFields);
@@ -40,13 +45,13 @@ const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps
         break;
     }
 
-  }, [steps]);
+  }, [stepsProps]);
   return (
     <>
       <FormInputsDataWrapper>
-        {children}
-        {steps.length !== 0 && <h1>{steps[currentActiveIndex].dataType}</h1>}
-        <div className={styles.form}>
+        {props.children}
+        {stepsProps?.length !== 0 && <h1>{stepsProps?.[currentActiveIndex as number].dataType}</h1>}
+        <form className={styles.form} data-testid="base-form">
           {/* <BaseUploadImage v-if="withImageUpload" className="block" /> */}
           {
             data.length !== 0 && data.map((input: any, index: number) => {
@@ -67,7 +72,7 @@ const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps
 
             })
           }
-        </div>
+        </form>
       </FormInputsDataWrapper>
     </>
   );

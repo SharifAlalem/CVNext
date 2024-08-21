@@ -61,3 +61,11 @@ export type BaseCardProps = {
   setComponentsProps?:any,
   children?:any
 }
+
+export type BaseFormProps = {
+  children?: any, 
+  buildDataProps?: any,
+  stepsProps?: ArrayOfSteps[],
+  setStepsProps?: Function,
+  currentIndexProps?: number;
+}
