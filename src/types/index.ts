@@ -10,7 +10,7 @@ export type ArrayOfSteps = {
 export type ComponentsContext = {
   steps: ArrayOfSteps[];
   setSteps: Function;
-  getCurrentActiveIndex: Function;
+  currentActiveIndex: number;
 };
 
 export type FloatingIcons = {
@@ -53,4 +53,11 @@ export type FormsInputsDataContextType = {
 export type ProgressProps = {
   stepsProps?: ArrayOfSteps[],
   setStepsProps?: Function
+}
+
+export type BaseCardProps = {
+  currentIndexProps?:any,
+  componentsProps?:any,
+  setComponentsProps?:any,
+  children?:any
 }

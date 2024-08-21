@@ -8,7 +8,7 @@ import { useFormBuildData } from '@/context/formBuildData';
 
 const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps?: any }) => {
   let id = 1;
-  const { steps, getCurrentActiveIndex } = useComponentsState();
+  const { steps, currentActiveIndex } = useComponentsState();
   const {
     personalFormFields,
     educationFormFields,
@@ -19,7 +19,7 @@ const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps
   } = useFormBuildData();
   const [data, setTheData] = useState<any>(personalFormFields);
   useEffect(() => {
-    switch (steps[getCurrentActiveIndex()].dataType) {
+    switch (steps[currentActiveIndex].dataType) {
       case 'personal':
         setTheData(personalFormFields);
         break;
@@ -45,7 +45,7 @@ const BaseForm = ({ children, buildDataProps }: { children?: any, buildDataProps
     <>
       <FormInputsDataWrapper>
         {children}
-        {steps.length !== 0 && <h1>{steps[getCurrentActiveIndex()].dataType}</h1>}
+        {steps.length !== 0 && <h1>{steps[currentActiveIndex].dataType}</h1>}
         <div className={styles.form}>
           {/* <BaseUploadImage v-if="withImageUpload" className="block" /> */}
           {
