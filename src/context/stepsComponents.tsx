@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 import { ComponentsContext } from "../types";
 import { FaUser, FaGraduationCap, FaBriefcase, FaProjectDiagram, FaMedal, FaFileSignature } from "react-icons/fa";
 
-const componentsContext = createContext<ComponentsContext>({ steps: [], setSteps: () => { } });
+const componentsContext = createContext<ComponentsContext>({ steps: [], setSteps: () => { },getCurrentActiveIndex: () => { } });
 
 export const ComponentsWrapper = ({ children }: { children: React.ReactNode; }) => {
   const [steps, setSteps] = useState([
@@ -14,7 +14,12 @@ export const ComponentsWrapper = ({ children }: { children: React.ReactNode; }) 
     { id:5,icon: <FaMedal />, dataType: 'skill' , active:false },
     { id:6,icon: <FaFileSignature />, dataType: 'template' , active:false },
   ]);
-  const value = { steps, setSteps };
+
+  const getCurrentActiveIndex = () => {
+    return steps.findIndex((step:any)=> step.active === true);
+  }
+
+  const value = { steps, setSteps, getCurrentActiveIndex };
   return (
     <componentsContext.Provider value={value}>
       {children}

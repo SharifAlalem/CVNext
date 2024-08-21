@@ -1,9 +1,11 @@
 "use client"
+import { useComponentsState } from '@/context/stepsComponents';
 import styles from './progress.module.scss';
 import { ArrayOfSteps } from '@/types';
 
-const ProgressBar = ({steps,setSteps}:{steps:ArrayOfSteps[],setSteps:Function}) => {
-    
+const ProgressBar = ({stepsProps,setStepsProps}:{stepsProps?:ArrayOfSteps[],setStepsProps?:Function}) => {
+    const { steps, setSteps } = useComponentsState();
+
     const setActive = (index:number) => {
         const newSteps = [...steps];
         newSteps.map(step=>step.active = false);
