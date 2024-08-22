@@ -69,3 +69,14 @@ export type BaseFormProps = {
   setStepsProps?: Function,
   currentIndexProps?: number;
 }
+
+export type BaseInputProps = {
+  name: string, 
+  value?: any, 
+  showLabel?: boolean, 
+  placeholder?: string, 
+  label: string, 
+  type: string, 
+  classType?: string, 
+  formId?: number 
+}
