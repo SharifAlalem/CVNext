@@ -3,39 +3,41 @@ import styles from './baseCard.module.scss';
 import { FaChevronLeft,FaChevronRight } from 'react-icons/fa';
 import { useRef } from 'react';
 import { ArrayOfSteps } from '@/types';
+import { BaseCardProps } from '@/types';
 
-const BaseCard = ({currentIndexProps,componentsProps,setComponentsProps,children}:{currentIndexProps?:any,componentsProps?:any,setComponentsProps?:any,children?:any}) => {
+const BaseCard = (props:BaseCardProps) => {
     
-    const { steps, setSteps , getCurrentActiveIndex } = useComponentsState();
+    const { steps, setSteps , currentActiveIndex } = useComponentsState();
+    const { currentIndexProps = currentActiveIndex, componentsProps = steps, setComponentsProps = setSteps } = props;
 
-    const tempArray = useRef<ArrayOfSteps[]>([...steps]);
+    const tempArray = useRef<ArrayOfSteps[]>([...componentsProps]);
 
     const prev = () => {
         tempArray.current = tempArray.current.map(component => ({...component, active:false}));
-        tempArray.current[getCurrentActiveIndex()-1].active = true;
-        setSteps(tempArray.current)
+        tempArray.current[currentIndexProps-1].active = true;
+        setComponentsProps(tempArray.current)
     }
 
     const next = () => {
         tempArray.current = tempArray.current.map(component => ({...component, active:false}));
-        tempArray.current[getCurrentActiveIndex()+1].active = true;
-        setSteps(tempArray.current)
+        tempArray.current[currentIndexProps+1].active = true;
+        setComponentsProps(tempArray.current)
     }
     
     return ( 
-        <section id={styles.baseCard}>
-            {children}
-            <div className={styles.actions + ' ' + (getCurrentActiveIndex() === 0 || getCurrentActiveIndex() === 5 ? styles.actionsCenter : '')}>
+        <section id={styles.baseCard} data-testid="base-card-section">
+            {props.children}
+            <div className={styles.actions + ' ' + (currentIndexProps === 0 || currentIndexProps === 5 ? styles.actionsCenter : '')}>
                 {
-                getCurrentActiveIndex() !== 0 && (
-                    <button id={styles.prev} onClick={prev} aria-label="next">
+                currentIndexProps !== 0 && (
+                    <button id={styles.prev} onClick={prev} aria-label="back">
                         <FaChevronLeft/>
                     </button>
                 )
                 }
                 {
-                getCurrentActiveIndex() !== 5 && (
-                    <button id={styles.next} onClick={next} aria-label="back">
+                currentIndexProps !== 5 && (
+                    <button id={styles.next} onClick={next} aria-label="next">
                         <FaChevronRight/>
                     </button>
                 )

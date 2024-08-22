@@ -2,14 +2,15 @@
 import styles from './baseInput.module.scss';
 import { memo } from 'react';
 import { useStore } from '@/customHooks/useStore';
+import { BaseInputProps } from '@/types';
 
-const BaseInput = ({ name, value, showLabel, placeholder, label, type, classType, formId }: { name: string, value: any, showLabel?: boolean, placeholder?: string, label: string, type: string, classType?: string, formId?: number }) => {
+const BaseInput = ( props : BaseInputProps) => {
   let checkedPresent = true;
-  const [fieldValue, setStore] = useStore((store:any) => store[value]);
+  const [fieldValue, setStore] = props.value ? useStore((store:any) => store[props.value]): ['noValue',()=>{}];
   return (
-    <div className={`${styles.formGroup} ${type !== 'image' ? styles[`${classType}`] : 'block'}`}>
+    <div className={`${styles.formGroup} ${props.type !== 'image' ? styles[`${props.classType}`] : 'block'}`}>
           <label className={styles.label}>
-            { showLabel !== false && <p>{placeholder}</p> }
+            { props.showLabel !== false && <p>{props.placeholder}</p> }
             {/* <BaseRatingInput
                       v-if="type === 'rating'"
                       :maxNum="5"
@@ -19,14 +20,14 @@ const BaseInput = ({ name, value, showLabel, placeholder, label, type, classType
                     ></BaseRatingInput> */}
 
             {
-              (type !== 'textarea') ? (
+              (props.type !== 'textarea') ? (
                 <input
-                  name={name}
+                  name={props.name}
                   className={`${styles.full} ${styles.input}`}
-                  type={type}
-                  placeholder={placeholder}
+                  type={props.type}
+                  placeholder={props.placeholder}
                   value={fieldValue || ''}
-                  onChange={e => setStore({[value]: e.target.value})}
+                  onChange={e => setStore({[props.value]: e.target.value})}
                   autoComplete="on"
                 />
               )
@@ -34,11 +35,11 @@ const BaseInput = ({ name, value, showLabel, placeholder, label, type, classType
                 :
                 (
                   <textarea
-                    name={name}
+                    name={props.name}
                     className={`${styles.full} ${styles.textarea}`}
-                    placeholder={placeholder}
+                    placeholder={props.placeholder}
                     value={fieldValue || ''}
-                    onChange={e => setStore({[value]: e.target.value})}
+                    onChange={e => setStore({[props.value]: e.target.value})}
                     autoComplete="on"
                   >
                   </textarea>
@@ -46,9 +47,9 @@ const BaseInput = ({ name, value, showLabel, placeholder, label, type, classType
             }
           </label>
       {
-        label === 'End date' && (
+        props.label === 'End date' && (
           <div className="checkbox">
-            <input value={fieldValue || ''} name={name} className={`${styles.full} ${styles.input}`} onChange={e => setStore({[value]: e.target.value})} />
+            <input value={fieldValue || ''} name={props.name} className={`${styles.full} ${styles.input}`} onChange={e => setStore({[props.value]: e.target.value})} />
             <label className={styles.label}> Present</label>
           </div>
         )
